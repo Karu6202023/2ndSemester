@@ -1,0 +1,17 @@
+#BlueJ class context
+comment0.target=UserInfoForm
+comment1.params=
+comment1.target=UserInfoForm()
+comment2.params=e
+comment2.target=void\ actionPerformed(java.awt.event.ActionEvent)
+comment3.params=
+comment3.target=void\ submitUserInfo()
+comment4.params=
+comment4.target=void\ openECommerceSystem()
+comment5.params=
+comment5.target=void\ run()
+comment6.params=args
+comment6.target=void\ main(java.lang.String[])
+comment7.params=
+comment7.target=void\ run()
+numComments=8
