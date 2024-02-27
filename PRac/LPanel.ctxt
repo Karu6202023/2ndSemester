@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=LPanel
+comment1.params=
+comment1.target=LPanel()
+comment2.params=l
+comment2.target=LPanel(Layout)
+comment3.params=l
+comment3.target=void\ putLayout(Layout)
+comment4.params=c
+comment4.target=void\ addItem(java.awt.Component)
+comment5.params=
+comment5.target=java.awt.Insets\ getInsets()
+numComments=6

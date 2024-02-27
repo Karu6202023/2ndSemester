@@ -1,0 +1,5 @@
+#BlueJ class context
+comment0.target=ILabel
+comment1.params=path\ w\ h
+comment1.target=ILabel(java.lang.String,\ int,\ int)
+numComments=2

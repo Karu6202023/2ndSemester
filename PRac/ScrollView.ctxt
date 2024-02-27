@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=ScrollView
+comment1.params=
+comment1.target=ScrollView()
+comment2.params=
+comment2.target=javax.swing.JScrollPane\ getView()
+numComments=3

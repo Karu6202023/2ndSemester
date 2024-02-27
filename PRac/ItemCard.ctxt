@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=ItemCard
+comment1.params=icon\ w
+comment1.target=ItemCard(java.awt.Component,\ java.awt.event.ActionListener)
+comment2.params=panel\ s\ align\ f
+comment2.target=void\ label(LPanel,\ java.lang.String,\ int,\ java.awt.Font)
+comment3.params=
+comment3.target=LPanel\ column()
+numComments=4

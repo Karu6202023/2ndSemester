@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=LFrame
+comment1.params=e
+comment1.target=void\ event(java.lang.String)
+comment2.params=e
+comment2.target=void\ actionPerformed(java.awt.event.ActionEvent)
+comment3.params=title
+comment3.target=LFrame(java.lang.String)
+comment4.params=layout
+comment4.target=void\ putLayout(Layout)
+comment5.params=
+comment5.target=void\ display()
+comment6.params=
+comment6.target=void\ fork()
+comment7.params=
+comment7.target=void\ close()
+comment8.params=c
+comment8.target=void\ addItem(java.awt.Component)
+numComments=9

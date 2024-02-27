@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=FLabel
+comment1.params=s\ align
+comment1.target=void\ create(java.lang.String,\ int)
+comment2.params=s\ align
+comment2.target=FLabel(java.lang.String,\ int)
+comment3.params=s
+comment3.target=FLabel(java.lang.String)
+comment4.params=f
+comment4.target=void\ putFont(java.awt.Font)
+numComments=5

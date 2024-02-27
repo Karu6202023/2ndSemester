@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=FLayout
+comment1.params=p\ align
+comment1.target=FLayout(LPanel,\ int)
+comment2.params=c
+comment2.target=void\ add(java.awt.Component)
+numComments=3

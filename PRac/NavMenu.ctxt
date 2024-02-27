@@ -1,0 +1,7 @@
+#BlueJ class context
+comment0.target=NavMenu
+comment1.params=w
+comment1.target=NavMenu(java.awt.event.ActionListener)
+comment2.params=s
+comment2.target=void\ addBtn(java.lang.String)
+numComments=3

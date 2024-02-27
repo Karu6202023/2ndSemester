@@ -1,0 +1,11 @@
+#BlueJ class context
+comment0.target=PageBuilder
+comment1.params=s\ p
+comment1.target=void\ createHeader(java.lang.String,\ LPanel)
+comment2.params=s\ p
+comment2.target=void\ createSubtitle(java.lang.String,\ LPanel)
+comment3.params=s\ p
+comment3.target=void\ createFooter(java.lang.String,\ LPanel)
+comment4.params=w\ p\ args
+comment4.target=void\ createNavMenu(java.awt.event.ActionListener,\ LPanel,\ java.lang.String[])
+numComments=5
