@@ -2,14 +2,17 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.awt.image.ImageObserver;
 
 public class ECommerceFrame {
 
     private List<String> cartItems;
     private JTextArea cartTextArea;
+    private VoucherManager voucherManager;
 
-    public ECommerceFrame(List<String> cartItems) {
+    public ECommerceFrame(List<String> cartItems, String idNumber, String fullName, String email, String location, String dateOfBirth, String gender) {
         this.cartItems = cartItems;
+        this.voucherManager = new VoucherManager(); 
 
         JFrame ecommerceFrame = new JFrame("Lazadog.ph™ - Encina Corporations");
         ecommerceFrame.setSize(1000, 800);
@@ -26,7 +29,7 @@ public class ECommerceFrame {
 
                 ImageIcon backgroundImage = new ImageIcon("C:\\Users\\user.MYCOMPUTER\\OneDrive\\shopping-cart-with-cereals.jpg");
                 Image img = backgroundImage.getImage();
-                g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
+                g.drawImage(img, 0, 0, getWidth(), getHeight(), (ImageObserver) this);
             }
         };
         backgroundPanel.setLayout(new BorderLayout());
@@ -50,12 +53,10 @@ public class ECommerceFrame {
             protected void paintComponent(Graphics g) {
                 super.paintComponent(g);
 
-                
                 ImageIcon backgroundImage = new ImageIcon("C:\\Users\\user.MYCOMPUTER\\OneDrive\\shopping-cart-with-cereals.jpg");
                 Image img = backgroundImage.getImage();
-                g.drawImage(img, 0, 0, getWidth(), getHeight(), this);
+                g.drawImage(img, 0, 0, getWidth(), getHeight(), (ImageObserver) this);
 
-                
                 Component[] components = getComponents();
                 for (Component component : components) {
                     if (component instanceof JLabel) {
@@ -67,7 +68,7 @@ public class ECommerceFrame {
             }
         };
         productsPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        productsPanel.setOpaque(false); 
+        productsPanel.setOpaque(false);
 
         String[] productNames = {
                 "Iphone-$1000",
@@ -120,7 +121,7 @@ public class ECommerceFrame {
             JLabel productLabel = new JLabel(productNames[i]);
             productLabel.setHorizontalAlignment(SwingConstants.CENTER);
             productLabel.setForeground(Color.WHITE);
-            productLabel.setBackground(new Color(0, 0, 0, 100)); // Set background color
+            productLabel.setBackground(new Color(0, 0, 0, 100)); 
             productPanel.add(productLabel, BorderLayout.NORTH);
 
             ImageIcon imageIcon = new ImageIcon(imagePaths[i]);
@@ -160,14 +161,91 @@ public class ECommerceFrame {
 
         JButton checkoutButton = new JButton("Checkout");
         checkoutButton.addActionListener(event -> {
-            
             double totalPrice = computeTotalPrice();
-            
             int option = JOptionPane.showConfirmDialog(ecommerceFrame, "Total price: $" + totalPrice + ". Do you want to continue?", "Checkout", JOptionPane.YES_NO_OPTION);
             if (option == JOptionPane.YES_OPTION) {
+                String[] availableVouchers = voucherManager.getAvailableVouchers();
+                String selectedVoucher = (String) JOptionPane.showInputDialog(ecommerceFrame,
+                        "Select a voucher:", "Voucher Selection",
+                        JOptionPane.QUESTION_MESSAGE, null,
+                        availableVouchers, availableVouchers[0]);
+
+                String[] availablePaymentMethods = voucherManager.getPaymentMethods();
+                String selectedPaymentMethod = (String) JOptionPane.showInputDialog(ecommerceFrame,
+                        "Select a payment method:", "Payment Method Selection",
+                        JOptionPane.QUESTION_MESSAGE, null,
+                        availablePaymentMethods, availablePaymentMethods[0]);
+                
+                double discount = 0.0; 
+                VoucherManager.Voucher selectedVoucherInfo = voucherManager.getVoucher(selectedVoucher);
+                if (selectedVoucherInfo != null) {
+                    discount = selectedVoucherInfo.getDiscount(); 
+                    ImageIcon voucherImageIcon = new ImageIcon("C:\\Users\\user.MYCOMPUTER\\OneDrive\\360_F_199211488_Qa6BvQJV2Q8BY6b4jP4Yk0k8Zlo0GN1X.jpg");
+                    JLabel imageLabel = new JLabel(voucherImageIcon);
+                    JPanel voucherPanel = new JPanel(new BorderLayout());
+                    voucherPanel.add(imageLabel, BorderLayout.CENTER);
+                    voucherPanel.add(new JLabel(selectedVoucherInfo.getDescription()), BorderLayout.SOUTH);
+                    JOptionPane.showMessageDialog(ecommerceFrame, voucherPanel, "Selected Voucher", JOptionPane.INFORMATION_MESSAGE);
+                    JLabel descriptionLabel = new JLabel(selectedVoucherInfo.getDescription());
+                    descriptionLabel.setFont(new Font("Arial", Font.BOLD, 18)); 
+                    descriptionLabel.setForeground(Color.RED); 
+                    descriptionLabel.setHorizontalAlignment(SwingConstants.CENTER); 
+
+                    JPanel voucherPanel1 = new JPanel(new BorderLayout());
+                    voucherPanel.add(imageLabel, BorderLayout.CENTER);
+                    voucherPanel.add(descriptionLabel, BorderLayout.SOUTH);
+
+                    JOptionPane.showMessageDialog(ecommerceFrame,
+                            "Congratulations! You've applied the voucher code: " + selectedVoucherInfo.getCode() +
+                            "\nDiscount: " + discount + "%");
+                }
+
+                double totalPriceAfterDiscount = totalPrice - (totalPrice * (discount / 100.0));
+                
+                double shippingFee = 10.0; 
+
+                JTextField nameField = new JTextField(fullName);
+                JTextField emailField = new JTextField(email);
+                JTextField contactNumberField = new JTextField(); 
+                JTextField addressField = new JTextField();
+                JTextField shippingFeeField = new JTextField(String.valueOf(shippingFee));
+
+                JPanel userInfoPanel = new JPanel(new GridLayout(7, 2)); 
+                userInfoPanel.add(new JLabel("Name:"));
+                userInfoPanel.add(nameField);
+                userInfoPanel.add(new JLabel("Email:"));
+                userInfoPanel.add(emailField);
+                userInfoPanel.add(new JLabel("Contact Number:")); 
+                userInfoPanel.add(contactNumberField);
+                userInfoPanel.add(new JLabel("Address:"));
+                userInfoPanel.add(addressField);
+                userInfoPanel.add(new JLabel("Shipping Fee: $")); 
+                userInfoPanel.add(shippingFeeField); 
+                userInfoPanel.add(new JLabel("Total Amount After Discount: $"));
+                userInfoPanel.add(new JLabel(String.valueOf(totalPriceAfterDiscount))); 
+
+                int userInfoOption = JOptionPane.showConfirmDialog(ecommerceFrame, userInfoPanel, "Enter Your Information", JOptionPane.OK_CANCEL_OPTION);
+                if (userInfoOption == JOptionPane.OK_OPTION) {
+                    
+                
+                    String contactNumber = contactNumberField.getText();
+                    String address = addressField.getText();
+                    double enteredShippingFee = Double.parseDouble(shippingFeeField.getText()); 
+                    shippingFee = enteredShippingFee > 0 ? enteredShippingFee : shippingFee;
+
+                    StringBuilder userInfo = new StringBuilder();
+                    userInfo.append("Name: ").append(fullName).append("\n");
+                    userInfo.append("Email: ").append(email).append("\n");
+                    userInfo.append("Contact Number: ").append(contactNumber).append("\n"); 
+                    userInfo.append("Address: ").append(address).append("\n");
+                    userInfo.append("Shipping Fee: $").append(shippingFee).append("\n");
+                    userInfo.append("Total Amount After Discount: $").append(totalPriceAfterDiscount).append("\n\n"); 
+
+                    JOptionPane.showMessageDialog(ecommerceFrame, userInfo.toString());
+                }
+
                 cartItems.clear();
                 updateCartTextArea();
-                JOptionPane.showMessageDialog(ecommerceFrame, "Your order has been processed!");
             }
         });
         cartPanel.add(checkoutButton, BorderLayout.SOUTH);
@@ -194,7 +272,7 @@ public class ECommerceFrame {
         for (String item : cartItems) {
             String[] parts = item.split("-");
             if (parts.length == 2) {
-                String priceStr = parts[1].substring(1); 
+                String priceStr = parts[1].substring(1);
                 double price = Double.parseDouble(priceStr);
                 totalPrice += price;
             }
@@ -205,7 +283,7 @@ public class ECommerceFrame {
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> {
             List<String> cartItems = new ArrayList<>();
-            new ECommerceFrame(cartItems);
+            new ECommerceFrame(cartItems, "", "", "", "", "", ""); 
         });
     }
 }

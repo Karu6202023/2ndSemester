@@ -119,51 +119,35 @@ public class HelloFrame extends JFrame implements ActionListener {
         }
     }
 
+    private String generateVoucherCode() {
+        return "NEWUSER10"; 
+    }
+
+    private void displayVoucher(String voucherCode) {
+        JOptionPane.showMessageDialog(this, "Congratulations! Here's your voucher code: " + voucherCode, "Voucher Code", JOptionPane.INFORMATION_MESSAGE);
+    }
+
     @Override
-    public void actionPerformed(ActionEvent e) {
-        String IdNumber = idField.getText();
-        String fName = fnameField.getText();
-        String mI = miField.getText();
-        String lName = lnameField.getText();
-        String c = cField.getText();
-        String yearLevel = ylField.getText();
-        String gender = "";
+public void actionPerformed(ActionEvent e) {
+    String IdNumber = idField.getText();
+    String fName = fnameField.getText();
+    String lName = lnameField.getText();
+    String c = cField.getText();
+    String yl = ylField.getText();
+    String gender = "";
 
-        if (checkBoxMale.isSelected()) {
-            gender = checkBoxMale.getText();
-        } else if (checkBoxFemale.isSelected()) {
-            gender = checkBoxFemale.getText();
-        }
-
-        String termsPolicy = checkBoxTerms.isSelected() ? "Agreed to terms and policy" : "Did not agree to terms and policy";
-
-        String preferredSports = "";
-
-        String message = "*******************************\n" +
-                "Personal Information Required:\n" +
-                "ID Number: " + IdNumber + "\n" +
-                "First Name: " + fName + "\n" +
-                "Middle Initial: " + mI + "\n" +
-                "Last Name: " + lName + "\n" +
-                "Email Address: " + c + "\n" +
-                "Location: " + c + "\n" +
-                "Date of Birth: " + yearLevel + "\n" +
-                "Gender: " + gender + "\n" +
-                "Preferred Sports: " + preferredSports + "\n" +
-                "Terms and Policy: " + termsPolicy + "\n" +
-                "*******************************";
-
-        greeting.setText("Welcome, " + fName);
-
-        writer.println(message);
-        writer.close();
-
-        openECommerceFrame();
+    if (checkBoxMale.isSelected()) {
+        gender = checkBoxMale.getText();
+    } else if (checkBoxFemale.isSelected()) {
+        gender = checkBoxFemale.getText();
     }
 
-    private void openECommerceFrame() {
-        new ECommerceFrame(cartItems);
-    }
+    openECommerceFrame(IdNumber, fName, lName, c, yl, gender);
+}
+
+private void openECommerceFrame(String idNumber, String fullName, String email, String location, String dateOfBirth, String gender) {
+    new ECommerceFrame(cartItems, idNumber, fullName, email, location, dateOfBirth, gender);
+}
 
     public List<String> getCartItems() {
         return cartItems;
@@ -173,4 +157,3 @@ public class HelloFrame extends JFrame implements ActionListener {
         this.cartItems = cartItems;
     }
 }
-
