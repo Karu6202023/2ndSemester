@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=ECommerceFrame
+comment1.params=cartItems\ idNumber\ fullName\ email\ location\ dateOfBirth\ gender
+comment1.target=ECommerceFrame(java.util.List,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String)
+comment2.params=g
+comment2.target=void\ paintComponent(java.awt.Graphics)
+comment3.params=g
+comment3.target=void\ paintComponent(java.awt.Graphics)
+comment4.params=
+comment4.target=void\ updateCartTextArea()
+comment5.params=
+comment5.target=double\ computeTotalPrice()
+comment6.params=args
+comment6.target=void\ main(java.lang.String[])
+numComments=7

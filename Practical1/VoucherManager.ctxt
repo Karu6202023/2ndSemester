@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=VoucherManager
+comment1.params=
+comment1.target=VoucherManager()
+comment2.params=
+comment2.target=java.lang.String[]\ getAvailableVouchers()
+comment3.params=voucherCode
+comment3.target=VoucherManager.Voucher\ getVoucher(java.lang.String)
+comment4.params=
+comment4.target=java.lang.String[]\ getPaymentMethods()
+comment5.params=methodName
+comment5.target=java.lang.String\ getPaymentMethodIcon(java.lang.String)
+numComments=6

@@ -1,0 +1,19 @@
+#BlueJ class context
+comment0.target=HelloFrame
+comment1.params=args
+comment1.target=void\ main(java.lang.String[])
+comment2.params=
+comment2.target=HelloFrame()
+comment3.params=
+comment3.target=java.lang.String\ generateVoucherCode()
+comment4.params=voucherCode
+comment4.target=void\ displayVoucher(java.lang.String)
+comment5.params=e
+comment5.target=void\ actionPerformed(java.awt.event.ActionEvent)
+comment6.params=idNumber\ fullName\ email\ location\ dateOfBirth\ gender
+comment6.target=void\ openECommerceFrame(java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String)
+comment7.params=
+comment7.target=java.util.List\ getCartItems()
+comment8.params=cartItems
+comment8.target=void\ setCartItems(java.util.List)
+numComments=9
